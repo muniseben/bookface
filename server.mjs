@@ -13,9 +13,11 @@ let client = await connectToCluster(process.env.MONGO_URI);
 
 const PORT = process.env.PORT || 3000;
 
+//The app.set() method takes two arguments: the property to set and the value to set it to. In this case, the property being set is "view engine", and the value being set is "ejs". This tells the Express application to use EJS as the view engine.
 app.set("view engine", "ejs");
 
-//datama arayuzden bilgi gondermemi saglar
+//datama arayuzden bilgi almami saglar
+//method is being used to configure the app object to parse URL-encoded data in the request body. This is necessary when the application needs to process data that is submitted through an HTML form.
 app.set(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
@@ -48,6 +50,10 @@ app.get("/login", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
     res.render("dashboard", { user: "user" });
+});
+
+app.get("/index", (req, res) => {
+    res.render("index", { user: "user" });
 });
 
 app.listen(PORT, () => {
